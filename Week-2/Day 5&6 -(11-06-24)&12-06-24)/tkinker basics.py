@@ -56,5 +56,9 @@ but6.grid(row=1,column=2,sticky=tk.W+tk.E)
 
 frames.pack(fill="x")#streches in x dimension
 
+anotherbtn=tk.Button(root2,text="Test")
+anotherbtn.place(x=200,y=250,height=100,width=100)
+
+
 root2.mainloop()
 root.mainloop()
