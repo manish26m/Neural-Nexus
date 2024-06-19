@@ -1,7 +1,7 @@
 # String Functions
-/* String functions in SQL are a set of built-in functions that allow you to manipulate and operate on string
+String functions in SQL are a set of built-in functions that allow you to manipulate and operate on string
  (character) data. These functions provide various operations such as concatenation, substring extraction,
- pattern matching, and string manipulation. */
+ pattern matching, and string manipulation.
 
 -- A) CHAR_LENGTH(str): This function returns the length of the given string str in characters.
 SELECT CHAR_LENGTH('Hello, World!');
@@ -46,9 +46,9 @@ SELECT RTRIM('   Hello, World!   ');
 SELECT LTRIM('   Hello, World!   ');
 
 # Date and Time Functions
-/* Date and time functions in SQL are a set of built-in functions that allow you to manipulate and perform
+ Date and time functions in SQL are a set of built-in functions that allow you to manipulate and perform
  operations on date and time data types. These functions help you extract components from date and time values,
- perform calculations, and format date and time information. */
+ perform calculations, and format date and time information. 
 
 -- A) CURRENT_DATE(): This function returns the current date in the format 'YYYY-MM-DD'.
 SELECT CURRENT_DATE() AS today;
@@ -80,9 +80,9 @@ SELECT ADDDATE('2023-05-01', INTERVAL 7 DAY) AS one_week_later;
 -- Output: 2023-05-08
 
 # Numeric Functions
-/* Numeric functions in SQL are a set of built-in functions that allow you to perform various mathematical
+ Numeric functions in SQL are a set of built-in functions that allow you to perform various mathematical
  operations and calculations on numeric data types, such as integers, floating-point numbers, and decimal values.
- These functions help you manipulate and analyze numerical data in your database tables. */
+ These functions help you manipulate and analyze numerical data in your database tables. 
 
 -- A) AVG(expression): This function returns the average value of the non-null values in a group.
 --    It's commonly used with the GROUP BY clause.
