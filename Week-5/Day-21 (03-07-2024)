@@ -1,0 +1,88 @@
+# Importing Necessary Libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Assuming df is your DataFrame
+# Example of creating a DataFrame with null values
+data = {
+    'Age': [25, np.nan, 30, 35, np.nan, 40],
+    'Income (USD)': [5000, 6000, np.nan, 8000, 9000, np.nan],
+    'Type of Employment': ['Full-time', np.nan, 'Part-time', 'Full-time', 'Part-time', np.nan],
+    'Dependents': [0, 1, np.nan, 2, 1, np.nan]
+}
+df = pd.DataFrame(data)
+
+# Dropping Null Values
+# Drop all rows with any null values
+df1 = df.dropna()
+
+# Drop all columns with any null values
+df2 = df.dropna(axis=1)
+
+# Drop rows where specific columns have null values
+df3 = df.dropna(subset=['Type of Employment', 'Dependents'])
+
+# Drop rows with at least a certain number of non-null values
+df4 = df.dropna(thresh=3)
+
+# Interpolation
+# Linear Interpolation
+df_interpolated = df.copy()
+df_interpolated['Income (USD)_interpolated'] = df['Income (USD)'].interpolate(method='linear')
+
+# Polynomial Interpolation
+df_poly_interpolated = df.interpolate(method='polynomial', order=2)
+
+# Pad Interpolation
+df_pad_interpolated = df.interpolate(method='pad')
+
+# Replacing Null Values
+# Replace with a specific value
+df_replaced = df.replace(to_replace=np.nan, value=0)
+
+# End of Distribution Imputation
+# Calculate Quartiles
+q1 = df['Age'].quantile(0.25)
+q2 = df['Age'].quantile(0.5)
+q3 = df['Age'].quantile(0.75)
+
+# Create Box Plot to Visualize Skewness
+sns.boxplot(x=df['Age'])
+plt.title('Box Plot for Age')
+plt.show()
+
+# Visualizing Interpolated Data
+plt.figure(figsize=(18, 8))
+
+# Original data distribution
+plt.subplot(1, 2, 1)
+sns.histplot(df['Income (USD)'], kde=True, color='lightblue', bins=40)
+plt.title('Original Data Distribution')
+plt.xlabel('Income (USD)')
+plt.ylabel('Frequency')
+plt.xlim(0, 10000)
+
+# Interpolated data distribution
+plt.subplot(1, 2, 2)
+sns.histplot(df_interpolated['Income (USD)_interpolated'], kde=True, color='green', bins=40)
+plt.title('Data Distribution after Interpolation')
+plt.xlabel('Income (USD)')
+plt.ylabel('Frequency')
+plt.xlim(0, 10000)
+
+plt.tight_layout()
+plt.show()
+
+# Summary of Interpolation Methods
+# Interpolation techniques to handle missing data:
+# - Linear Interpolation
+# - Polynomial Interpolation
+# - Spline Interpolation
+# - Nearest Neighbor Interpolation
+
+# Assessing Skewness and Symmetry Using Quartiles
+iqr = q3 - q1  # Interquartile Range
+lower_whisker = q1 - 1.5 * iqr
+upper_whisker = q3 + 1.5 * iqr
